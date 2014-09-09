@@ -7,7 +7,14 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('prePost', ['ionic', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $log) {
+
+  $rootScope.$on('$stateChangeStart', 
+  function(event, toState, toParams, fromState, fromParams){ 
+    $log.debug(toState);
+    $log.debug(fromState);
+  });
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -30,55 +37,66 @@ angular.module('prePost', ['ionic', 'starter.controllers', 'starter.services'])
   $stateProvider
 
     // setup an abstract state for the tabs directive
-    .state('tab', {
-      url: "/tab",
+    .state('app', {
+      url: "/app",
       abstract: true,
       templateUrl: "templates/tabs.html"
     })
 
     // Each tab has its own nav history stack:
 
-    .state('tab.dash', {
-      url: '/dash',
+    .state('app.feed', {
+      url: '/feed',
       views: {
-        'tab-dash': {
+        'tab-feed': {
           templateUrl: 'templates/tab-dash.html',
           controller: 'DashCtrl'
         }
       }
     })
 
-    .state('tab.friends', {
-      url: '/friends',
+    .state('app.selector', {
+      url: '/selector',
       views: {
-        'tab-friends': {
+        'tab-selector': {
+          templateUrl: 'templates/tab-account.html',
+          controller: 'AccountCtrl'
+        }
+      }
+    })
+
+    .state('app.profile', {
+      url: '/profile',
+      views: {
+        'tab-profile': {
           templateUrl: 'templates/tab-friends.html',
           controller: 'FriendsCtrl'
         }
       }
     })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
+
+    .state(' ', {
+      url: '/profile/:profileId',
       views: {
-        'tab-friends': {
+        'tab-profile': {
           templateUrl: 'templates/friend-detail.html',
           controller: 'FriendDetailCtrl'
         }
       }
     })
 
-    .state('tab.account', {
-      url: '/account',
-      views: {
-        'tab-account': {
-          templateUrl: 'templates/tab-account.html',
-          controller: 'AccountCtrl'
-        }
-      }
-    });
+    // .state('tab.account', {
+    //   url: '/account',
+    //   views: {
+    //     'tab-account': {
+    //       templateUrl: 'templates/tab-account.html',
+    //       controller: 'AccountCtrl'
+    //     }
+    //   }
+    // });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/app/feed');
 
 });
 
