@@ -6,6 +6,7 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var inject = require("gulp-inject");
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -47,4 +48,13 @@ gulp.task('git-check', function(done) {
     process.exit(1);
   }
   done();
+});
+
+gulp.task('index', function () {
+  var target = gulp.src('./www/index.html');
+  // It's not necessary to read the files (will speed up things), we're only after their paths:
+  var sources = gulp.src(['./www/src/**/*.js', './www/src/**/*.css'], {read: false});
+
+  return target.pipe(inject(sources, {relative: true}))
+    .pipe(gulp.dest('./www'));
 });
