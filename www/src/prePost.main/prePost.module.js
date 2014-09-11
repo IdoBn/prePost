@@ -45,15 +45,6 @@
         templateUrl: "src/prePost.main/tabs.html"
       })
       // Each tab has its own nav history stack:
-      .state('app.profile', {
-        url: '/profile',
-        views: {
-          'tab-profile': {
-            templateUrl: 'src/templates/tab-friends.html',
-            controller: 'FriendsCtrl'
-          }
-        }
-      })
       .state('app.profile-detail', {
         url: '/profile/:profileId',
         views: {
@@ -63,15 +54,6 @@
           }
         }
       })
-      // .state('tab.account', {
-      //   url: '/account',
-      //   views: {
-      //     'tab-account': {
-      //       templateUrl: 'src/templates/tab-account.html',
-      //       controller: 'AccountCtrl'
-      //     }
-      //   }
-      // });
     // if none of the above states are matched, use this as the fallback
     urlRouterProvider.otherwise('/app/feed');
   }
@@ -84,7 +66,8 @@
     'starter.services',
     'prePost.upload',
     'prePost.feed',
-    'prePost.selector'
+    'prePost.selector',
+    'prePost.profile'
     ])
     .run(Run)
     .config(Config)
