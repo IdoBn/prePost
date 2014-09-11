@@ -12,7 +12,7 @@
   **/
   function Run(ionicPlatform, rootScope, log, $window) {
     rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-      log.debug('state change', toState, toParams, fromState, fromParams);
+      log.debug('state change', {'to state': toState,'to params': toParams,'from state': fromState,'from params': fromParams});
     });
 
     ionicPlatform.ready(function() {
@@ -42,18 +42,9 @@
       .state('app', {
         url: "/app",
         abstract: true,
-        templateUrl: "src/templates/tabs.html"
+        templateUrl: "src/prePost.main/tabs.html"
       })
       // Each tab has its own nav history stack:
-      .state('app.feed', {
-        url: '/feed',
-        views: {
-          'tab-feed': {
-            templateUrl: 'src/templates/tab-dash.html',
-            controller: 'DashCtrl'
-          }
-        }
-      })
       .state('app.selector', {
         url: '/selector',
         views: {
@@ -96,7 +87,13 @@
     //injecting dependencies into the Config function
     Config.$inject = ['$stateProvider', '$urlRouterProvider'];
 
-  angular.module('prePost', ['ionic', 'starter.controllers', 'starter.services'])
+  angular.module('prePost', [
+    'ionic', 
+    'starter.controllers',
+    'starter.services',
+    'prePost.upload',
+    'prePost.feed'
+    ])
     .run(Run)
     .config(Config)
 }());
