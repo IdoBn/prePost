@@ -45,15 +45,6 @@
         templateUrl: "src/prePost.main/tabs.html"
       })
       // Each tab has its own nav history stack:
-      .state('app.selector', {
-        url: '/selector',
-        views: {
-          'tab-selector': {
-            templateUrl: 'src/templates/tab-account.html',
-            controller: 'AccountCtrl'
-          }
-        }
-      })
       .state('app.profile', {
         url: '/profile',
         views: {
@@ -92,7 +83,8 @@
     'starter.controllers',
     'starter.services',
     'prePost.upload',
-    'prePost.feed'
+    'prePost.feed',
+    'prePost.selector'
     ])
     .run(Run)
     .config(Config)
