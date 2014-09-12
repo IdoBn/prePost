@@ -44,18 +44,7 @@
         abstract: true,
         templateUrl: "src/prePost.main/tabs.html"
       })
-      // Each tab has its own nav history stack:
-      .state('app.profile-detail', {
-        url: '/profile/:profileId',
-        views: {
-          'tab-profile': {
-            templateUrl: 'src/templates/friend-detail.html',
-            controller: 'FriendDetailCtrl'
-          }
-        }
-      })
     // if none of the above states are matched, use this as the fallback
-    urlRouterProvider.otherwise('/app/feed');
   }
     //injecting dependencies into the Config function
     Config.$inject = ['$stateProvider', '$urlRouterProvider'];

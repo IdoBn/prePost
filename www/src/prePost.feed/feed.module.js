@@ -11,6 +11,8 @@
           }
         }
       })
+
+    urlRouterProvider.otherwise('/app/feed');
   }
     //injecting dependencies into the Config function
     Config.$inject = ['$stateProvider', '$urlRouterProvider'];

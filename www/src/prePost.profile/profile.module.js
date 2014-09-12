@@ -12,6 +12,15 @@
           }
         }
       })
+      .state('app.profile-detail', {
+        url: '/profile/:profileId',
+        views: {
+          'tab-profile': {
+            templateUrl: 'src/prePost.profile/profile-detail.html',
+            controller: 'ProfileDetailCtrl'
+          }
+        }
+      })
   }
     //injecting dependencies into the Config function
     Config.$inject = ['$stateProvider', '$urlRouterProvider'];
