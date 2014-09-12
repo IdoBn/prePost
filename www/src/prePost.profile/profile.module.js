@@ -25,7 +25,9 @@
     //injecting dependencies into the Config function
     Config.$inject = ['$stateProvider', '$urlRouterProvider'];
 
-  angular.module('prePost.profile', [])
+  angular.module('prePost.profile', [
+    'prePost.services'
+    ])
     .config(Config)
 
 }())

@@ -51,8 +51,6 @@
 
   angular.module('prePost', [
     'ionic', 
-    'starter.controllers',
-    'starter.services',
     'prePost.upload',
     'prePost.feed',
     'prePost.selector',
