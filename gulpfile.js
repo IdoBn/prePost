@@ -51,10 +51,24 @@ gulp.task('git-check', function(done) {
   done();
 });
 
-gulp.task('index', function () {
+gulp.task('index', ['index-css'] ,function () {
   var target = gulp.src('./www/index.html');
   // It's not necessary to read the files (will speed up things), we're only after their paths:
-  var sources = gulp.src(['./www/src/**/*.js', './www/src/**/*.css']).pipe(angularFilesort());
+  var sources = gulp.src([
+    './www/src/**/*.module.js', 
+    './www/src/**/*.controller.js',
+    './www/src/**/*.service.js',
+    './www/src/**/*.directive.js'
+  ]).pipe(angularFilesort());
+
+  return target.pipe(inject(sources, {relative: true}))
+    .pipe(gulp.dest('./www'));
+});
+
+gulp.task('index-css', function () {
+  var target = gulp.src('./www/index.html');
+  // It's not necessary to read the files (will speed up things), we're only after their paths:
+  var sources = gulp.src('./www/src/**/*.css', {read: false});
 
   return target.pipe(inject(sources, {relative: true}))
     .pipe(gulp.dest('./www'));
